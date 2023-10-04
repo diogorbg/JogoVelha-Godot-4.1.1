@@ -1,0 +1,130 @@
+[gd_scene load_steps=8 format=3 uid="uid://570slmre70yr"]
+
+[ext_resource type="Script" path="res://jogo/button.gd" id="1_6e45q"]
+[ext_resource type="Texture2D" uid="uid://cg1sulkillphb" path="res://sprites/1.png" id="2_qlemb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3b4o"]
+bg_color = Color(1, 1, 1, 0.196078)
+
+[sub_resource type="Animation" id="Animation_krq5f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("img:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("img:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_blsxx"]
+resource_name = "click"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("img:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("img:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5a7qy"]
+resource_name = "start"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("img:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("img:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0i81a"]
+_data = {
+"RESET": SubResource("Animation_krq5f"),
+"click": SubResource("Animation_blsxx"),
+"start": SubResource("Animation_5a7qy")
+}
+
+[node name="button" type="Button"]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 168.0
+offset_bottom = 168.0
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n3b4o")
+button_mask = 3
+script = ExtResource("1_6e45q")
+cor1 = Color(0, 0.453333, 0.8, 1)
+cor2 = Color(0.8, 0.346667, 0, 1)
+
+[node name="img" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(84, 84)
+texture = ExtResource("2_qlemb")
+stretch_mode = 3
+
+[node name="anim" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+autoplay = "start"
+speed_scale = 4.0
+libraries = {
+"": SubResource("AnimationLibrary_0i81a")
+}
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
