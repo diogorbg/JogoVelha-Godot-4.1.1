@@ -9,8 +9,6 @@ const img2 = preload("res://sprites/4.png")
 @export var cor1: Color
 @export var cor2: Color
 
-static var player1: bool = true
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -19,9 +17,9 @@ func _ready():
 func _on_pressed():
 	disabled = true # não poderá mais ser clicado
 	anim.play("click")
-	self_modulate = cor1 if player1 else cor2
-	img.texture = img1 if player1 else img2
-	player1 = !player1
+	self_modulate = cor1 if JogoVelha.isPlayer1 else cor2
+	img.texture = img1 if JogoVelha.isPlayer1 else img2
+	JogoVelha.nextTurn()
 
 
 # conectar este sinal caso o clique não esteja funcionando no mobile
