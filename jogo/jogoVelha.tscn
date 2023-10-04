@@ -98,4 +98,24 @@ rotation = 3.14159
 [node name="seta" parent="panelPlayer2/Button/Control" index="0"]
 self_modulate = Color(0.746094, 0.480469, 0.277344, 1)
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -208.0
+offset_right = 188.0
+offset_bottom = -8.0
+grow_vertical = 0
+alignment = 2
+
+[node name="butReset" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Resetar"
+
+[connection signal="pressed" from="VBoxContainer/butReset" to="." method="novoJogo"]
+
 [editable path="panelPlayer2"]

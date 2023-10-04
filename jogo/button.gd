@@ -1,4 +1,5 @@
 extends Button
+class_name Botao
 
 const img1 = preload("res://sprites/1.png")
 const img2 = preload("res://sprites/4.png")
@@ -8,6 +9,8 @@ const img2 = preload("res://sprites/4.png")
 
 @export var cor1: Color
 @export var cor2: Color
+
+var peca = " "
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +23,13 @@ func _on_pressed():
 	self_modulate = cor1 if JogoVelha.isPlayer1 else cor2
 	img.texture = img1 if JogoVelha.isPlayer1 else img2
 	JogoVelha.nextTurn()
+
+
+func reset():
+	peca = " "
+	disabled = false
+	anim.play("start")
+	self_modulate = Color.WHITE
 
 
 # conectar este sinal caso o clique não esteja funcionando no mobile
