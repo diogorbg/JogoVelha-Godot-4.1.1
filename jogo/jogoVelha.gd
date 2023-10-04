@@ -19,9 +19,17 @@ static var isPlayer1: bool = false
 static var _singleton: JogoVelha
 
 static  func nextTurn():
-	isPlayer1 = !isPlayer1
-	_singleton.panelPlayer1.setSel(isPlayer1)
-	_singleton.panelPlayer2.setSel(!isPlayer1)
+	if _singleton.verificaVencedor():
+		_singleton.panelPlayer1.setSel(false)
+		_singleton.panelPlayer2.setSel(false)
+		for lin in _singleton.botoes:
+			for bot in lin:
+				(bot as Botao).finalizar()
+		print("jogador " + ("1" if  isPlayer1 else "2") + " venceu")
+	else:
+		isPlayer1 = !isPlayer1
+		_singleton.panelPlayer1.setSel(isPlayer1)
+		_singleton.panelPlayer2.setSel(!isPlayer1)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -35,3 +43,34 @@ func novoJogo():
 			(bot as Botao).reset()
 	isPlayer1 = false
 	nextTurn()
+
+func getBotao(lin: int, col: int) -> Botao:
+	return (botoes[lin] as Array[Botao])[col]
+
+
+func compare(b1: Botao, b2: Botao, b3: Botao) -> bool:
+	if b1.peca == b2.peca && b2.peca == b3.peca && b3.peca != " ":
+		return true
+	return false 
+
+
+func verificaVencedor() -> bool:
+	# Verifica se um jogador ganhou em uma linha
+	for i in range(3):
+		if compare(getBotao(i,0), getBotao(i,1), getBotao(i,2)):
+			return true
+
+	# Verifica se um jogador ganhou em uma coluna
+	for i in range(3):
+		if compare(getBotao(0,i), getBotao(1,i), getBotao(2,i)):
+			return true
+
+	# Verifica se um jogador ganhou na diagonal principal
+	if compare(getBotao(0,0), getBotao(1,1), getBotao(2,2)):
+		return true
+
+	# Verifica se um jogador ganhou na diagonal secundária
+	if compare(getBotao(0,2), getBotao(1,1), getBotao(2,0)):
+		return true
+
+	return false
