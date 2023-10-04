@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://bieaiytldqkb0"]
+
+[ext_resource type="PackedScene" uid="uid://570slmre70yr" path="res://jogo/button.tscn" id="1_n26q3"]
+[ext_resource type="PackedScene" uid="uid://g52trn0ghgl2" path="res://jogo/panelPlayer.tscn" id="2_8fuv7"]
+[ext_resource type="Texture2D" uid="uid://ck3mg6efe640h" path="res://sprites/4.png" id="3_dsmit"]
+
+[node name="jogoVelha" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="tabuleiro" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBox1" type="HBoxContainer" parent="tabuleiro"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="but1" parent="tabuleiro/HBox1" instance=ExtResource("1_n26q3")]
+layout_mode = 2
+
+[node name="but2" parent="tabuleiro/HBox1" instance=ExtResource("1_n26q3")]
+layout_mode = 2
+
+[node name="but3" parent="tabuleiro/HBox1" instance=ExtResource("1_n26q3")]
+layout_mode = 2
+
+[node name="HBox2" type="HBoxContainer" parent="tabuleiro"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="but4" parent="tabuleiro/HBox2" instance=ExtResource("1_n26q3")]
+layout_mode = 2
+
+[node name="but5" parent="tabuleiro/HBox2" instance=ExtResource("1_n26q3")]
+layout_mode = 2
+
+[node name="but6" parent="tabuleiro/HBox2" instance=ExtResource("1_n26q3")]
+layout_mode = 2
+
+[node name="HBox3" type="HBoxContainer" parent="tabuleiro"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="but7" parent="tabuleiro/HBox3" instance=ExtResource("1_n26q3")]
+layout_mode = 2
+
+[node name="but8" parent="tabuleiro/HBox3" instance=ExtResource("1_n26q3")]
+layout_mode = 2
+
+[node name="but9" parent="tabuleiro/HBox3" instance=ExtResource("1_n26q3")]
+layout_mode = 2
+
+[node name="panelPlayer1" parent="." instance=ExtResource("2_8fuv7")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 180.0
+offset_bottom = 177.0
+
+[node name="panelPlayer2" parent="." instance=ExtResource("2_8fuv7")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -188.0
+offset_right = -8.0
+grow_horizontal = 0
+
+[node name="Button" parent="panelPlayer2" index="0"]
+icon = ExtResource("3_dsmit")
+
+[node name="Control" parent="panelPlayer2/Button" index="0"]
+offset_left = -170.0
+offset_right = -170.0
+rotation = 3.14159
+
+[node name="Triangulo" parent="panelPlayer2/Button/Control" index="0"]
+self_modulate = Color(0.75, 0.48225, 0.2775, 1)
+
+[editable path="panelPlayer2"]
