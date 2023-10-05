@@ -51,9 +51,9 @@ func getBotao(lin: int, col: int) -> Botao:
 
 func compare(b1: Botao, b2: Botao, b3: Botao) -> bool:
 	if b1.peca == b2.peca && b2.peca == b3.peca && b3.peca != " ":
-		b1.marcar()
-		b2.marcar()
-		b3.marcar()
+		b1.marcar(.3)
+		b2.marcar(.2)
+		b3.marcar(.1)
 		return true
 	return false 
 

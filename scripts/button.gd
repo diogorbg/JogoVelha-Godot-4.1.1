@@ -44,9 +44,10 @@ func finalizar():
 		flat = true
 
 
-func marcar():
+func marcar(delta:float):
 	self_modulate = winCor1 if JogoVelha.isPlayer1 else winCor2
 	anim2.play("win")
+	anim2.advance(delta)
 
 
 # conectar este sinal caso o clique não esteja funcionando no mobile

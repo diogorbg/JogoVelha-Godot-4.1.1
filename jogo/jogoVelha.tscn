@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bieaiytldqkb0"]
 
-[ext_resource type="Script" path="res://jogo/jogoVelha.gd" id="1_6f1hg"]
+[ext_resource type="Script" path="res://scripts/jogoVelha.gd" id="1_386pt"]
 [ext_resource type="PackedScene" uid="uid://570slmre70yr" path="res://jogo/button.tscn" id="1_n26q3"]
 [ext_resource type="PackedScene" uid="uid://g52trn0ghgl2" path="res://jogo/panelPlayer.tscn" id="2_8fuv7"]
 [ext_resource type="Texture2D" uid="uid://ck3mg6efe640h" path="res://sprites/4.png" id="3_dsmit"]
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6f1hg")
+script = ExtResource("1_386pt")
 
 [node name="tabuleiro" type="VBoxContainer" parent="."]
 layout_mode = 1
