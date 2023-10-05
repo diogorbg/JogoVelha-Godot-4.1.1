@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Tema" load_steps=3 format=3 uid="uid://8f64b1ac30he"]
+
+[ext_resource type="Texture2D" uid="uid://ctvrpw5reybmj" path="res://sprites/6.png" id="1_o18fd"]
+[ext_resource type="Script" path="res://scripts/tema.gd" id="2_nf7oh"]
+
+[resource]
+script = ExtResource("2_nf7oh")
+cor = Color(0.277344, 0.746094, 0.480469, 1)
+corBg = Color(0, 0.8, 0.346667, 1)
+img = ExtResource("1_o18fd")

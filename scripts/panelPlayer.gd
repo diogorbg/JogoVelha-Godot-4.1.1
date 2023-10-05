@@ -1,6 +1,15 @@
 extends VBoxContainer
 class_name PanelPlayer
 
+const temas: Array[Tema]  = [
+	preload("res://temas/tema1.tres"),
+	preload("res://temas/tema2.tres"),
+	preload("res://temas/tema3.tres"),
+	preload("res://temas/tema4.tres"),
+	preload("res://temas/tema5.tres"),
+	preload("res://temas/tema6.tres")
+];
+
 # Todas as possibilidades temáticas dos jogadores
 const _temasJogador = [{
 	cor = Color(0.277344, 0.542969, 0.746094, 1),
