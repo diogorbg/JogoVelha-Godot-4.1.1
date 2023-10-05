@@ -1,7 +1,8 @@
 extends VBoxContainer
 class_name PanelPlayer
 
-const temas: Array[Tema]  = [
+# Todas as possibilidades temáticas dos jogadores
+const _temas: Array[Tema]  = [
 	preload("res://temas/tema1.tres"),
 	preload("res://temas/tema2.tres"),
 	preload("res://temas/tema3.tres"),
@@ -9,33 +10,6 @@ const temas: Array[Tema]  = [
 	preload("res://temas/tema5.tres"),
 	preload("res://temas/tema6.tres")
 ];
-
-# Todas as possibilidades temáticas dos jogadores
-const _temasJogador = [{
-	cor = Color(0.277344, 0.542969, 0.746094, 1),
-	corBg = Color(0, 0.453333, 0.8, 1),
-	img = preload("res://sprites/1.png")
-}, {
-	cor = Color(0.480469, 0.277344, 0.746094, 1),
-	corBg = Color(0.346667, 0, 0.8, 1),
-	img = preload("res://sprites/2.png")
-}, {
-	cor = Color(0.746094, 0.277344, 0.542969, 1),
-	corBg = Color(0.8, 0, 0.453333, 1),
-	img = preload("res://sprites/3.png")
-}, {
-	cor = Color(0.746094, 0.480469, 0.277344, 1),
-	corBg = Color(0.8, 0.346667, 0, 1),
-	img = preload("res://sprites/4.png")
-}, {
-	cor = Color(0.542969, 0.746094, 0.277344, 1),
-	corBg = Color(0.453333, 0.8, 0, 1),
-	img = preload("res://sprites/5.png")
-}, {
-	cor = Color(0.277344, 0.746094, 0.480469, 1),
-	corBg = Color(0, 0.8, 0.346667, 1),
-	img = preload("res://sprites/6.png")
-}]
 
 @onready var seta = %seta as Sprite2D
 @onready var txtVitorias = %txtVitorias as Label
@@ -46,7 +20,7 @@ const _temasJogador = [{
 @export var idTema: int = 0
 
 var vitorias: int  = 0
-var tema = null
+var tema: Tema = null
 var oponente: PanelPlayer = null
 
 func _ready():
@@ -67,7 +41,7 @@ func proxTema():
 
 # Aplica as cores e texturas para todas as partes customizáveis
 func setTema():
-	tema = _temasJogador[idTema]
+	tema = _temas[idTema]
 	seta.self_modulate = tema.cor
 	butAvatar.icon = tema.img
 	imgBad.self_modulate = tema.cor
