@@ -112,9 +112,10 @@ grow_vertical = 0
 alignment = 2
 
 [node name="butReset" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Resetar"
+text = "Novo Jogo"
 
 [connection signal="pressed" from="VBoxContainer/butReset" to="." method="novoJogo"]
 

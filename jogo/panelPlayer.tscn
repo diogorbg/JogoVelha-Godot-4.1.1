@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://g52trn0ghgl2"]
+[gd_scene load_steps=11 format=3 uid="uid://g52trn0ghgl2"]
 
 [ext_resource type="Texture2D" uid="uid://cg1sulkillphb" path="res://sprites/1.png" id="1_rf4j6"]
 [ext_resource type="Script" path="res://jogo/panelPlayer.gd" id="1_tr2u5"]
 [ext_resource type="Texture2D" uid="uid://cdhddlpkbo04v" path="res://sprites/triangulo.png" id="2_swnso"]
+[ext_resource type="Texture2D" uid="uid://dqnm0ybk5vuka" path="res://sprites/trofeu.png" id="4_eyw0h"]
 
 [sub_resource type="Animation" id="Animation_q73f2"]
 length = 0.001
@@ -65,6 +66,43 @@ _data = {
 "loop": SubResource("Animation_yvkc1")
 }
 
+[sub_resource type="Animation" id="Animation_d65gv"]
+resource_name = "loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("imgTrofeu:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [-0.785398, 0.785398, -0.785398]
+}
+
+[sub_resource type="Animation" id="Animation_hq0ja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("imgTrofeu:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_141d0"]
+_data = {
+"RESET": SubResource("Animation_hq0ja"),
+"loop": SubResource("Animation_d65gv")
+}
+
 [node name="panelPlayer" type="VBoxContainer"]
 custom_minimum_size = Vector2(180, 0)
 offset_right = 180.0
@@ -104,6 +142,22 @@ libraries = {
 }
 
 [node name="txtVitorias" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Vitórias: 0"
+
+[node name="trofeu" type="Control" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="imgTrofeu" type="Sprite2D" parent="trofeu"]
+position = Vector2(90, 90)
+texture = ExtResource("4_eyw0h")
+
+[node name="anim2" type="AnimationPlayer" parent="trofeu"]
+autoplay = "loop"
+libraries = {
+"": SubResource("AnimationLibrary_141d0")
+}

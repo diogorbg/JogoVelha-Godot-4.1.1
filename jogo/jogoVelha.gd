@@ -25,6 +25,7 @@ static  func nextTurn():
 		for lin in _singleton.botoes:
 			for bot in lin:
 				(bot as Botao).finalizar()
+		(_singleton.panelPlayer1 if isPlayer1 else _singleton.panelPlayer2).showTrofeu()
 		print("jogador " + ("1" if  isPlayer1 else "2") + " venceu")
 	else:
 		isPlayer1 = !isPlayer1
@@ -35,6 +36,7 @@ static  func nextTurn():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_singleton = self
+	novoJogo()
 
 
 func novoJogo():
