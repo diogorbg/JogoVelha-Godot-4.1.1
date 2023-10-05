@@ -16,28 +16,14 @@ class_name JogoVelha
 @onready var botoes = [[but1, but2, but3], [but4, but5, but6], [but7, but8, but9]]
 
 static var isPlayer1: bool = false
+# singleton é uma técnica muito útil para criar objetos gerenciadores
 static var _singleton: JogoVelha
-
-static  func nextTurn():
-	if _singleton.verificaVencedor():
-		_singleton.panelPlayer1.setSel(false)
-		_singleton.panelPlayer2.setSel(false)
-		for lin in _singleton.botoes:
-			for bot in lin:
-				(bot as Botao).finalizar()
-		(_singleton.panelPlayer1 if isPlayer1 else _singleton.panelPlayer2).showTrofeu()
-		print("jogador " + ("1" if  isPlayer1 else "2") + " venceu")
-	else:
-		isPlayer1 = !isPlayer1
-		_singleton.panelPlayer1.setSel(isPlayer1)
-		_singleton.panelPlayer2.setSel(!isPlayer1)
-
 
 func _ready():
 	_singleton = self
 	novoJogo()
 
-
+# Restaura todos os valores para iniciar uma nova partida
 func novoJogo():
 	for lin in botoes:
 		for bot in lin:
@@ -45,10 +31,31 @@ func novoJogo():
 	isPlayer1 = false
 	nextTurn()
 
+# Sempre retorna o PanelPlayer do jogador atual
+static func getPanelPlayer() -> PanelPlayer:
+	return _singleton.panelPlayer1 if isPlayer1 else _singleton.panelPlayer2
+
+# Chama o próximo turno
+# Verificações de vitória são feitas neste momento
+static func nextTurn():
+	if _singleton.verificaVencedor():
+		_singleton.panelPlayer1.setSel(false)
+		_singleton.panelPlayer2.setSel(false)
+		for lin in _singleton.botoes:
+			for bot in lin:
+				(bot as Botao).finalizar()
+		getPanelPlayer().showTrofeu()
+		print("jogador " + ("1" if  isPlayer1 else "2") + " venceu")
+	else:
+		isPlayer1 = !isPlayer1
+		_singleton.panelPlayer1.setSel(isPlayer1)
+		_singleton.panelPlayer2.setSel(!isPlayer1)
+
+# Facilita retornar um botão localizado dentro de um Array[Array[Botao]]
 func getBotao(lin: int, col: int) -> Botao:
 	return (botoes[lin] as Array[Botao])[col]
 
-
+# Compara 3 botões e os marca, caso detecte vitória
 func compare(b1: Botao, b2: Botao, b3: Botao) -> bool:
 	if b1.peca == b2.peca && b2.peca == b3.peca && b3.peca != " ":
 		b1.marcar(.3)
@@ -57,7 +64,7 @@ func compare(b1: Botao, b2: Botao, b3: Botao) -> bool:
 		return true
 	return false 
 
-
+# Função principal de verificação do vencedor
 func verificaVencedor() -> bool:
 	# Verifica se um jogador ganhou em uma linha
 	for i in range(3):

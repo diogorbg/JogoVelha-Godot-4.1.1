@@ -11,13 +11,10 @@ const img2 = preload("res://sprites/4.png")
 @export var cor1: Color
 @export var cor2: Color
 
+# guarda o valor x: jogador1, o: jogador2, " ": espaço vazio
 var peca: String = " "
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
+# Sinal do clique do botão
 func _on_pressed():
 	disabled = true # não poderá mais ser clicado
 	anim.play("click")
@@ -26,7 +23,7 @@ func _on_pressed():
 	peca = "X" if JogoVelha.isPlayer1 else "O"
 	JogoVelha.nextTurn()
 
-
+# Restaura valores iniciais para criar nova partida
 func reset():
 	peca = " "
 	disabled = false
@@ -34,13 +31,13 @@ func reset():
 	anim2.play("RESET")
 	self_modulate = Color.WHITE
 
-
+# Botões que não foram utilizados são desativados
 func finalizar():
 	if peca == " ":
 		disabled = true
 		self_modulate = Color(Color.WHITE, 0.1)
 
-
+# Marca o botão como peças vencedoras
 func marcar(delta:float):
 	self_modulate = cor1 if JogoVelha.isPlayer1 else cor2
 	anim2.play("win")

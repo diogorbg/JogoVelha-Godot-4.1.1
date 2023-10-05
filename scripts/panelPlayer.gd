@@ -7,16 +7,15 @@ class_name PanelPlayer
 
 var vitorias: int  = 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	trofeu.visible = false
 
-
+# Mostra qual jogador está ativo
 func setSel(sel: bool):
 	seta.visible = sel
 	trofeu.visible = false
 
-
+# Mostra o trofeu e soma uma vitória
 func showTrofeu():
 	trofeu.visible = true
 	vitorias += 1
