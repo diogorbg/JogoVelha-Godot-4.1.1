@@ -33,7 +33,6 @@ static  func nextTurn():
 		_singleton.panelPlayer2.setSel(!isPlayer1)
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	_singleton = self
 	novoJogo()
@@ -52,6 +51,9 @@ func getBotao(lin: int, col: int) -> Botao:
 
 func compare(b1: Botao, b2: Botao, b3: Botao) -> bool:
 	if b1.peca == b2.peca && b2.peca == b3.peca && b3.peca != " ":
+		b1.marcar()
+		b2.marcar()
+		b3.marcar()
 		return true
 	return false 
 

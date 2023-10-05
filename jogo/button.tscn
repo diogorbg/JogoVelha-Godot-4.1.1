@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://570slmre70yr"]
+[gd_scene load_steps=11 format=3 uid="uid://570slmre70yr"]
 
 [ext_resource type="Script" path="res://jogo/button.gd" id="1_6e45q"]
 [ext_resource type="Texture2D" uid="uid://cg1sulkillphb" path="res://sprites/1.png" id="2_qlemb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3b4o"]
-bg_color = Color(1, 1, 1, 0.196078)
+bg_color = Color(1, 1, 1, 0.392157)
 
 [sub_resource type="Animation" id="Animation_krq5f"]
 length = 0.001
@@ -95,6 +95,43 @@ _data = {
 "start": SubResource("Animation_5a7qy")
 }
 
+[sub_resource type="Animation" id="Animation_0l0lg"]
+resource_name = "win"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("img:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [-0.785398, 0.785398, -0.785398]
+}
+
+[sub_resource type="Animation" id="Animation_5sipt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("img:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dq88b"]
+_data = {
+"RESET": SubResource("Animation_5sipt"),
+"win": SubResource("Animation_0l0lg")
+}
+
 [node name="button" type="Button"]
 custom_minimum_size = Vector2(128, 128)
 offset_right = 168.0
@@ -104,8 +141,10 @@ mouse_default_cursor_shape = 2
 theme_override_styles/disabled = SubResource("StyleBoxFlat_n3b4o")
 button_mask = 3
 script = ExtResource("1_6e45q")
-cor1 = Color(0, 0.453333, 0.8, 1)
-cor2 = Color(0.8, 0.346667, 0, 1)
+cor1 = Color(0, 0.45098, 0.8, 0.501961)
+winCor1 = Color(0, 0.45098, 0.8, 1)
+cor2 = Color(0.8, 0.35, 0, 0.5)
+winCor2 = Color(0.8, 0.34902, 0, 1)
 
 [node name="img" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -125,6 +164,12 @@ autoplay = "start"
 speed_scale = 4.0
 libraries = {
 "": SubResource("AnimationLibrary_0i81a")
+}
+
+[node name="anim2" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_dq88b")
 }
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

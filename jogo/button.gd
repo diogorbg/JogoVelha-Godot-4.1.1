@@ -5,10 +5,13 @@ const img1 = preload("res://sprites/1.png")
 const img2 = preload("res://sprites/4.png")
 
 @onready var anim = %anim as AnimationPlayer
+@onready var anim2 = %anim2 as AnimationPlayer
 @onready var img = %img as TextureRect
 
 @export var cor1: Color
+@export var winCor1: Color
 @export var cor2: Color
+@export var winCor2: Color
 
 var peca: String = " "
 
@@ -31,6 +34,7 @@ func reset():
 	flat = false
 	disabled = false
 	anim.play("start")
+	anim2.play("RESET")
 	self_modulate = Color.WHITE
 
 
@@ -38,6 +42,11 @@ func finalizar():
 	if peca == " ":
 		disabled = true
 		flat = true
+
+
+func marcar():
+	self_modulate = winCor1 if JogoVelha.isPlayer1 else winCor2
+	anim2.play("win")
 
 
 # conectar este sinal caso o clique não esteja funcionando no mobile
