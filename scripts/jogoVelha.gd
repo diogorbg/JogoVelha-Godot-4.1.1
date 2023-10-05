@@ -71,7 +71,7 @@ func compare(b1: Botao, b2: Botao, b3: Botao) -> bool:
 		b2.marcar(.2)
 		b3.marcar(.1)
 		return true
-	return false 
+	return false
 
 # Função principal de verificação do vencedor
 func verificaVencedor() -> bool:
