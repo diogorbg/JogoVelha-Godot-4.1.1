@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://do0ehyleohgv1"]
+
+[ext_resource type="PackedScene" uid="uid://g52trn0ghgl2" path="res://scenes/panelPlayer.tscn" id="1_setd0"]
+[ext_resource type="Texture2D" uid="uid://ck3mg6efe640h" path="res://sprites/4.png" id="2_c0xkr"]
+
+[node name="panelPlayer" instance=ExtResource("1_setd0")]
+
+[node name="Button" parent="." index="0"]
+icon = ExtResource("2_c0xkr")
+
+[node name="Control" parent="Button" index="0"]
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 10.0
+offset_right = 10.0
+grow_horizontal = 1
+
+[node name="seta" parent="Button/Control" index="0"]
+self_modulate = Color(0.75, 0.48225, 0.2775, 1)
+rotation = 1.5708

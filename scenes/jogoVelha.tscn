@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/jogoVelha.gd" id="1_386pt"]
 [ext_resource type="PackedScene" uid="uid://570slmre70yr" path="res://scenes/button.tscn" id="1_n26q3"]
 [ext_resource type="PackedScene" uid="uid://g52trn0ghgl2" path="res://scenes/panelPlayer.tscn" id="2_8fuv7"]
-[ext_resource type="Texture2D" uid="uid://ck3mg6efe640h" path="res://sprites/4.png" id="3_dsmit"]
+[ext_resource type="PackedScene" uid="uid://do0ehyleohgv1" path="res://scenes/panelPlayer_variacao.tscn" id="4_y7hhk"]
 
 [node name="jogoVelha" type="Control"]
 layout_mode = 3
@@ -75,7 +75,7 @@ offset_top = 8.0
 offset_right = 188.0
 offset_bottom = 185.0
 
-[node name="panelPlayer2" parent="." instance=ExtResource("2_8fuv7")]
+[node name="panelPlayer2" parent="." instance=ExtResource("4_y7hhk")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
@@ -84,22 +84,8 @@ anchor_right = 1.0
 offset_left = -188.0
 offset_top = 8.0
 offset_right = -8.0
-offset_bottom = 185.0
+offset_bottom = 369.0
 grow_horizontal = 0
-
-[node name="Button" parent="panelPlayer2" index="0"]
-icon = ExtResource("3_dsmit")
-
-[node name="Control" parent="panelPlayer2/Button" index="0"]
-offset_left = -170.0
-offset_right = -170.0
-rotation = 3.14159
-
-[node name="seta" parent="panelPlayer2/Button/Control" index="0"]
-self_modulate = Color(0.746094, 0.480469, 0.277344, 1)
-
-[node name="imgBad" parent="panelPlayer2/final" index="1"]
-self_modulate = Color(0.742188, 0.480469, 0.277344, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(180, 0)
@@ -122,5 +108,3 @@ theme_override_font_sizes/font_size = 24
 text = "Novo Jogo"
 
 [connection signal="pressed" from="VBoxContainer/butReset" to="." method="novoJogo"]
-
-[editable path="panelPlayer2"]
