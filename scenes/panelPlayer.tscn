@@ -236,13 +236,15 @@ offset_right = 180.0
 offset_bottom = 177.0
 script = ExtResource("1_tr2u5")
 
-[node name="Button" type="Button" parent="."]
+[node name="butAvatar" type="Button" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_default_cursor_shape = 2
 action_mode = 0
 icon = ExtResource("1_rf4j6")
 icon_alignment = 1
 
-[node name="Control" type="Control" parent="Button"]
+[node name="Control" type="Control" parent="butAvatar"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -254,7 +256,7 @@ offset_right = -10.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="seta" type="Sprite2D" parent="Button/Control"]
+[node name="seta" type="Sprite2D" parent="butAvatar/Control"]
 unique_name_in_owner = true
 self_modulate = Color(0.277344, 0.542969, 0.746094, 1)
 rotation = -1.5708
@@ -262,7 +264,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_swnso")
 offset = Vector2(0, -12)
 
-[node name="anim" type="AnimationPlayer" parent="Button/Control"]
+[node name="anim" type="AnimationPlayer" parent="butAvatar/Control"]
 autoplay = "loop"
 libraries = {
 "": SubResource("AnimationLibrary_lr5xq")
@@ -283,6 +285,7 @@ position = Vector2(90, 90)
 texture = ExtResource("4_eyw0h")
 
 [node name="imgBad" type="Sprite2D" parent="final"]
+unique_name_in_owner = true
 visible = false
 self_modulate = Color(0.277344, 0.539063, 0.742188, 1)
 position = Vector2(90, 90)
@@ -293,3 +296,6 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_141d0")
 }
+
+[connection signal="gui_input" from="butAvatar" to="." method="_on_butAvatar_guiInput"]
+[connection signal="pressed" from="butAvatar" to="." method="proxTema"]

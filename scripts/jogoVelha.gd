@@ -21,6 +21,8 @@ static var _singleton: JogoVelha
 
 func _ready():
 	_singleton = self
+	panelPlayer1.oponente = panelPlayer2
+	panelPlayer2.oponente = panelPlayer1
 	novoJogo()
 
 # Restaura todos os valores para iniciar uma nova partida
@@ -30,6 +32,9 @@ func novoJogo():
 			(bot as Botao).reset()
 	isPlayer1 = false
 	JogoVelha.nextTurn()
+
+static func setTema(player: PanelPlayer):
+	pass
 
 # Sempre retorna o PanelPlayer do jogador atual
 static func getPanelPlayer() -> PanelPlayer:
