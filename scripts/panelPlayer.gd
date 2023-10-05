@@ -2,7 +2,7 @@ extends VBoxContainer
 class_name PanelPlayer
 
 # Todas as possibilidades temáticas dos jogadores
-const _temas: Array[Tema]  = [
+const _temas = [
 	preload("res://temas/tema1.tres"),
 	preload("res://temas/tema2.tres"),
 	preload("res://temas/tema3.tres"),
@@ -17,14 +17,15 @@ const _temas: Array[Tema]  = [
 @onready var butAvatar = %butAvatar as Button
 @onready var imgBad = %imgBad as Sprite2D
 
+@export var id: int = 1
 @export var idTema: int = 0
 
 var vitorias: int  = 0
-var tema: Tema = null
+var tema = null
 var oponente: PanelPlayer = null
 
 func _ready():
-	setTema()
+	setTema(false)
 	anim2.get_parent().visible = false
 
 # Volta um tema, mas evita que seja igual ao oponente
@@ -40,12 +41,13 @@ func proxTema():
 	else: setTema()
 
 # Aplica as cores e texturas para todas as partes customizáveis
-func setTema():
+# all define se deve trocar o tema de todos os botões
+func setTema(all: bool = true):
 	tema = _temas[idTema]
 	seta.self_modulate = tema.cor
 	butAvatar.icon = tema.img
 	imgBad.self_modulate = tema.cor
-	JogoVelha.setTema(self)
+	if all: JogoVelha.setTema(self)
 
 # Mostra qual jogador está ativo
 func setSel(sel: bool):

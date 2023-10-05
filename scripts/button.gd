@@ -37,6 +37,13 @@ func marcar(delta:float):
 	anim2.play("win")
 	anim2.advance(delta)
 
+# muda o tema do botão
+func setTema(tema: Tema):
+	if self_modulate.a < 0.55:
+		self_modulate = Color(tema.corBg, 0.5)
+	else:
+		self_modulate = tema.corBg
+	img.texture = tema.img
 
 # conectar este sinal caso o clique não esteja funcionando no mobile
 #func _on_gui_input(event: InputEvent) -> void:

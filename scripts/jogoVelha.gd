@@ -34,7 +34,11 @@ func novoJogo():
 	JogoVelha.nextTurn()
 
 static func setTema(player: PanelPlayer):
-	pass
+	var peca = "X" if player.id == 1 else "O"
+	for lin in _singleton.botoes:
+		for bot in lin:
+			if (bot as Botao).peca == peca:
+				(bot as Botao).setTema(player.tema)
 
 # Sempre retorna o PanelPlayer do jogador atual
 static func getPanelPlayer() -> PanelPlayer:
