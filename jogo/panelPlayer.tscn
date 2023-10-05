@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://g52trn0ghgl2"]
+[gd_scene load_steps=13 format=3 uid="uid://g52trn0ghgl2"]
 
 [ext_resource type="Texture2D" uid="uid://cg1sulkillphb" path="res://sprites/1.png" id="1_rf4j6"]
 [ext_resource type="Script" path="res://scripts/panelPlayer.gd" id="1_tr2u5"]
 [ext_resource type="Texture2D" uid="uid://cdhddlpkbo04v" path="res://sprites/triangulo.png" id="2_swnso"]
 [ext_resource type="Texture2D" uid="uid://dqnm0ybk5vuka" path="res://sprites/trofeu.png" id="4_eyw0h"]
+[ext_resource type="Texture2D" uid="uid://n0utwi14ke80" path="res://sprites/bad.png" id="5_8s1b0"]
 
 [sub_resource type="Animation" id="Animation_q73f2"]
 length = 0.001
@@ -80,9 +81,57 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("imgTrofeu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("imgBad:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("imgBad:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(90, 90)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("imgBad:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_d65gv"]
-resource_name = "loop"
+resource_name = "vitoria"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -96,11 +145,89 @@ tracks/0/keys = {
 "update": 0,
 "values": [-0.785398, 0.785398, -0.785398]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("imgTrofeu:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("imgBad:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8xwh8"]
+resource_name = "derrota"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("imgTrofeu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("imgBad:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("imgBad:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(-0.5, -0.5, -0.5, -0.5, -0.5, -0.5),
+"update": 0,
+"values": [Vector2(86, 92), Vector2(94, 91), Vector2(89, 86), Vector2(87, 93), Vector2(94, 89), Vector2(86, 92)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("imgBad:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(-0.5, -0.5, -0.5, -0.5, -0.5, -0.5),
+"update": 0,
+"values": [0.0846346, -0.250038, 0.218479, -0.0999345, 0.162765, 0.0846346]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_141d0"]
 _data = {
 "RESET": SubResource("Animation_hq0ja"),
-"loop": SubResource("Animation_d65gv")
+"derrota": SubResource("Animation_8xwh8"),
+"vitoria": SubResource("Animation_d65gv")
 }
 
 [node name="panelPlayer" type="VBoxContainer"]
@@ -147,17 +274,21 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Vitórias: 0"
 
-[node name="trofeu" type="Control" parent="."]
-unique_name_in_owner = true
+[node name="final" type="Control" parent="."]
 custom_minimum_size = Vector2(180, 180)
 layout_mode = 2
 
-[node name="imgTrofeu" type="Sprite2D" parent="trofeu"]
+[node name="imgTrofeu" type="Sprite2D" parent="final"]
 position = Vector2(90, 90)
 texture = ExtResource("4_eyw0h")
 
-[node name="anim2" type="AnimationPlayer" parent="trofeu"]
-autoplay = "loop"
+[node name="imgBad" type="Sprite2D" parent="final"]
+self_modulate = Color(0.277344, 0.539063, 0.742188, 1)
+position = Vector2(90, 90)
+texture = ExtResource("5_8s1b0")
+
+[node name="anim2" type="AnimationPlayer" parent="final"]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_141d0")
 }

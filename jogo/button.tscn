@@ -4,7 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cg1sulkillphb" path="res://sprites/1.png" id="2_qlemb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3b4o"]
-bg_color = Color(1, 1, 1, 0.392157)
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="Animation" id="Animation_krq5f"]
 length = 0.001

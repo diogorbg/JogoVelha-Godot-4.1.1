@@ -29,23 +29,32 @@ func novoJogo():
 		for bot in lin:
 			(bot as Botao).reset()
 	isPlayer1 = false
-	nextTurn()
+	JogoVelha.nextTurn()
 
 # Sempre retorna o PanelPlayer do jogador atual
 static func getPanelPlayer() -> PanelPlayer:
 	return _singleton.panelPlayer1 if isPlayer1 else _singleton.panelPlayer2
 
+# Remove a seleção de jogador e desativa todos os botões não utilizados
+func finalizar():
+	panelPlayer1.setSel(false)
+	panelPlayer2.setSel(false)
+	for lin in botoes:
+		for bot in lin:
+			(bot as Botao).finalizar()
+
 # Chama o próximo turno
 # Verificações de vitória são feitas neste momento
 static func nextTurn():
 	if _singleton.verificaVencedor():
-		_singleton.panelPlayer1.setSel(false)
-		_singleton.panelPlayer2.setSel(false)
-		for lin in _singleton.botoes:
-			for bot in lin:
-				(bot as Botao).finalizar()
-		getPanelPlayer().showTrofeu()
+		_singleton.finalizar()
+		getPanelPlayer().showVitoria()
 		print("jogador " + ("1" if  isPlayer1 else "2") + " venceu")
+	elif _singleton.verificarEmpate():
+		_singleton.finalizar()
+		_singleton.panelPlayer1.showDerrota()
+		_singleton.panelPlayer2.showDerrota()
+		print("Jogo empatado")
 	else:
 		isPlayer1 = !isPlayer1
 		_singleton.panelPlayer1.setSel(isPlayer1)
@@ -85,3 +94,11 @@ func verificaVencedor() -> bool:
 		return true
 
 	return false
+
+
+func verificarEmpate() -> bool:
+	for lin in botoes:
+		for bot in lin:
+			if (bot as Botao).peca == " ":
+				return false
+	return true
