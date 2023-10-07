@@ -15,9 +15,13 @@ class_name JogoVelha
 @onready var but9 = $tabuleiro/HBox3/but9 as Botao
 @onready var botoes = [[but1, but2, but3], [but4, but5, but6], [but7, but8, but9]]
 
-static var isPlayer1: bool = false
+# Este é o jogador atual: turno atual
+static var jogador: PanelPlayer = null
+# Este é o jogador oponente: próximo turno
+static var oponente: PanelPlayer = null
+
 # singleton é uma técnica muito útil para criar objetos gerenciadores
-static var _singleton: JogoVelha
+static var _singleton: JogoVelha = null
 
 func _ready():
 	_singleton = self
@@ -30,19 +34,13 @@ func novoJogo():
 	for lin in botoes:
 		for bot in lin:
 			(bot as Botao).reset()
-	isPlayer1 = false
 	JogoVelha.nextTurn()
 
 static func setTema(player: PanelPlayer):
-	var peca = "X" if player.id == 1 else "O"
 	for lin in _singleton.botoes:
 		for bot in lin:
-			if (bot as Botao).peca == peca:
+			if (bot as Botao).id == player.id:
 				(bot as Botao).setTema(player.tema)
-
-# Sempre retorna o PanelPlayer do jogador atual
-static func getPanelPlayer() -> PanelPlayer:
-	return _singleton.panelPlayer1 if isPlayer1 else _singleton.panelPlayer2
 
 # Remove a seleção de jogador e desativa todos os botões não utilizados
 func finalizar():
@@ -57,17 +55,22 @@ func finalizar():
 static func nextTurn():
 	if _singleton.verificaVencedor():
 		_singleton.finalizar()
-		getPanelPlayer().showVitoria()
-		print("jogador " + ("1" if  isPlayer1 else "2") + " venceu")
+		jogador.showVitoria()
+		print(jogador.getNome() + " venceu")
 	elif _singleton.verificarEmpate():
 		_singleton.finalizar()
 		_singleton.panelPlayer1.showDerrota()
 		_singleton.panelPlayer2.showDerrota()
 		print("Jogo empatado")
 	else:
-		isPlayer1 = !isPlayer1
-		_singleton.panelPlayer1.setSel(isPlayer1)
-		_singleton.panelPlayer2.setSel(!isPlayer1)
+		if jogador == _singleton.panelPlayer1:
+			jogador = _singleton.panelPlayer2
+			oponente = _singleton.panelPlayer1
+		else:
+			jogador = _singleton.panelPlayer1
+			oponente = _singleton.panelPlayer2
+		jogador.setSel(true)
+		oponente.setSel(false)
 
 # Facilita retornar um botão localizado dentro de um Array[Array[Botao]]
 func getBotao(lin: int, col: int) -> Botao:
@@ -75,7 +78,7 @@ func getBotao(lin: int, col: int) -> Botao:
 
 # Compara 3 botões e os marca, caso detecte vitória
 func compare(b1: Botao, b2: Botao, b3: Botao) -> bool:
-	if b1.peca == b2.peca && b2.peca == b3.peca && b3.peca != " ":
+	if b1.id == b2.id && b2.id == b3.id && b3.id != 0:
 		b1.marcar(.3)
 		b2.marcar(.2)
 		b3.marcar(.1)
@@ -104,10 +107,10 @@ func verificaVencedor() -> bool:
 
 	return false
 
-
+# Se não encontrar um botão com id 0, então não existem mais jogadas
 func verificarEmpate() -> bool:
 	for lin in botoes:
 		for bot in lin:
-			if (bot as Botao).peca == " ":
+			if (bot as Botao).id == 0:
 				return false
 	return true

@@ -17,7 +17,9 @@ const _temas = [
 @onready var butAvatar = %butAvatar as Button
 @onready var imgBad = %imgBad as Sprite2D
 
-@export var id: int = 1
+# Exibe uma enumeração na interface que permite escolher entre 'Jogador 1' e 'Jogador 2'
+# No final teremos a variável id que recebe o valor 1 ou -1 (-1 irá nos ajudar a verificar o tabeleiro)
+@export_enum("Jogador 1:1", "Jogador 2:-1") var id: int = 1
 @export var idTema: int = 0
 
 var vitorias: int  = 0
@@ -48,6 +50,10 @@ func setTema(all: bool = true):
 	butAvatar.icon = tema.img
 	imgBad.self_modulate = tema.cor
 	if all: JogoVelha.setTema(self)
+
+# Retorna o nome do jogador
+func getNome() -> String:
+	return "Jogador 1" if id == 1 else "Jogador 2"
 
 # Mostra qual jogador está ativo
 func setSel(sel: bool):
