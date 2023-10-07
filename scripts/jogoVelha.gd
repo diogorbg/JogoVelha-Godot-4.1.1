@@ -36,12 +36,6 @@ func novoJogo():
 			(bot as Botao).reset()
 	JogoVelha.nextTurn()
 
-static func setTema(player: PanelPlayer):
-	for lin in _singleton.botoes:
-		for bot in lin:
-			if (bot as Botao).id == player.id:
-				(bot as Botao).setTema(player.tema)
-
 # Remove a seleção de jogador e desativa todos os botões não utilizados
 func finalizar():
 	panelPlayer1.setSel(false)
@@ -72,6 +66,10 @@ static func nextTurn():
 		jogador.setSel(true)
 		oponente.setSel(false)
 
+#
+static  func getBotoes():
+	return _singleton.botoes;
+
 # Facilita retornar um botão localizado dentro de um Array[Array[Botao]]
 func getBotao(lin: int, col: int) -> Botao:
 	return (botoes[lin] as Array[Botao])[col]
@@ -79,9 +77,9 @@ func getBotao(lin: int, col: int) -> Botao:
 # Compara 3 botões e os marca, caso detecte vitória
 func compare(b1: Botao, b2: Botao, b3: Botao) -> bool:
 	if b1.id == b2.id && b2.id == b3.id && b3.id != 0:
-		b1.marcar(.3)
-		b2.marcar(.2)
-		b3.marcar(.1)
+		b1.marcar(0.3)
+		b2.marcar(0.2)
+		b3.marcar(0.1)
 		return true
 	return false
 
@@ -91,20 +89,16 @@ func verificaVencedor() -> bool:
 	for i in range(3):
 		if compare(getBotao(i,0), getBotao(i,1), getBotao(i,2)):
 			return true
-
 	# Verifica se um jogador ganhou em uma coluna
 	for i in range(3):
 		if compare(getBotao(0,i), getBotao(1,i), getBotao(2,i)):
 			return true
-
 	# Verifica se um jogador ganhou na diagonal principal
 	if compare(getBotao(0,0), getBotao(1,1), getBotao(2,2)):
 		return true
-
 	# Verifica se um jogador ganhou na diagonal secundária
 	if compare(getBotao(0,2), getBotao(1,1), getBotao(2,0)):
 		return true
-
 	return false
 
 # Se não encontrar um botão com id 0, então não existem mais jogadas
