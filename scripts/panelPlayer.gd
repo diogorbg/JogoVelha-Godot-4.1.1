@@ -11,16 +11,22 @@ const _temas = [
 	preload("res://temas/tema6.tres")
 ];
 
+var iconHuman = preload("res://sprites/human.png")
+var iconRobot = preload("res://sprites/robot.png")
+
 @onready var seta = %seta as Sprite2D
 @onready var txtVitorias = %txtVitorias as Label
 @onready var anim2 = %anim2 as AnimationPlayer
 @onready var butAvatar = %butAvatar as Button
 @onready var imgBad = %imgBad as Sprite2D
+@onready var butJogador = $butJogador as Button
+@onready var timerIA = $timerIA as Timer
 
 # Exibe uma enumeração na interface que permite escolher entre 'Jogador 1' e 'Jogador 2'
 # No final teremos a variável id que recebe o valor 1 ou -1 (-1 irá nos ajudar a verificar o tabeleiro)
 @export_enum("Jogador 1:1", "Jogador 2:-1") var id: int = 1
 @export var idTema: int = 0
+@export var usarIA: bool = false
 
 var vitorias: int  = 0
 var tema = null
@@ -29,6 +35,8 @@ var oponente: PanelPlayer = null
 func _ready():
 	setTema()
 	anim2.get_parent().visible = false
+	butJogador.icon = iconRobot if usarIA else iconHuman
+	butJogador.text = getNome()
 
 # Volta um tema, mas evita que seja igual ao oponente
 func voltarTema():
@@ -52,12 +60,17 @@ func setTema():
 
 # Retorna o nome do jogador
 func getNome() -> String:
-	return "Jogador 1" if id == 1 else "Jogador 2"
+	if usarIA:
+		return "IA 1" if id == 1 else "IA 2"
+	else:
+		return "Jogador 1" if id == 1 else "Jogador 2"
 
 # Mostra qual jogador está ativo
 func setSel(sel: bool):
 	seta.visible = sel
 	anim2.get_parent().visible = false
+	# Se a IA estiver ativa, será executada após o timer
+	if sel && usarIA: timerIA.start()
 
 # Mostra o trofeu e soma uma vitória
 func showVitoria():
@@ -76,3 +89,10 @@ func _on_butAvatar_guiInput(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.pressed && event.button_index == MOUSE_BUTTON_RIGHT:
 			voltarTema()
+
+# Permite jogar com IA simples
+func ativarDesativarIA():
+	usarIA = !usarIA
+	butJogador.icon = iconRobot if usarIA else iconHuman
+	butJogador.text = getNome()
+
