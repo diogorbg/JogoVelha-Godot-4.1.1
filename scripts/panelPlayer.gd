@@ -5,6 +5,11 @@ class_name PanelPlayer
 @onready var txtVitorias = %txtVitorias as Label
 @onready var anim2 = %anim2 as AnimationPlayer
 
+# Exibe uma enumeração na interface que permite escolher entre 'Jogador 1' e 'Jogador 2'
+# No final teremos a variável id que recebe o valor 1 ou -1 (-1 irá nos ajudar a verificar o tabeleiro)
+@export_enum("Jogador 1:1", "Jogador 2:-1") var id: int = 1
+@export_color_no_alpha var corBg: Color
+
 var vitorias: int  = 0
 
 func _ready():

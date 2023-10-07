@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://ck3mg6efe640h" path="res://sprites/4.png" id="2_c0xkr"]
 
 [node name="panelPlayer" instance=ExtResource("1_setd0")]
+id = -1
+corBg = Color(0.8, 0.346667, 0, 1)
 
 [node name="Button" parent="." index="0"]
 icon = ExtResource("2_c0xkr")
