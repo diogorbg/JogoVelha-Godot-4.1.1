@@ -12,8 +12,8 @@ var id: int = 0
 func _on_pressed():
 	disabled = true # não poderá mais ser clicado
 	anim.play("click")
-	self_modulate = Color(JogoVelha.getPanelPlayer().tema.corBg, 0.5)
-	img.texture = JogoVelha.getPanelPlayer().tema.img
+	self_modulate = Color(JogoVelha.jogador.tema.corBg, 0.5)
+	img.texture = JogoVelha.jogador.tema.img
 	id = JogoVelha.jogador.id
 	JogoVelha.nextTurn()
 
@@ -33,7 +33,7 @@ func finalizar():
 
 # Marca o botão como peças vencedoras
 func marcar(delta:float):
-	self_modulate = JogoVelha.getPanelPlayer().tema.corBg
+	self_modulate = JogoVelha.jogador.tema.corBg
 	anim2.play("win")
 	anim2.advance(delta)
 

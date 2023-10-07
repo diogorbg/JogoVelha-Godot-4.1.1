@@ -236,7 +236,6 @@ custom_minimum_size = Vector2(180, 0)
 offset_right = 180.0
 offset_bottom = 177.0
 script = ExtResource("1_tr2u5")
-corBg = Color(0, 0.453333, 0.8, 1)
 
 [node name="butAvatar" type="Button" parent="."]
 unique_name_in_owner = true

@@ -37,15 +37,10 @@ func novoJogo():
 	JogoVelha.nextTurn()
 
 static func setTema(player: PanelPlayer):
-	var peca = "X" if player.id == 1 else "O"
 	for lin in _singleton.botoes:
 		for bot in lin:
-			if (bot as Botao).peca == peca:
+			if (bot as Botao).id == player.id:
 				(bot as Botao).setTema(player.tema)
-
-# Sempre retorna o PanelPlayer do jogador atual
-static func getPanelPlayer() -> PanelPlayer:
-	return _singleton.panelPlayer1 if isPlayer1 else _singleton.panelPlayer2
 
 # Remove a seleção de jogador e desativa todos os botões não utilizados
 func finalizar():
