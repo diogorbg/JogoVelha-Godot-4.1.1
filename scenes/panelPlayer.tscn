@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dqnm0ybk5vuka" path="res://sprites/trofeu.png" id="4_eyw0h"]
 [ext_resource type="Texture2D" uid="uid://bm06btkxr8mh2" path="res://sprites/human.png" id="4_lel52"]
 [ext_resource type="Texture2D" uid="uid://n0utwi14ke80" path="res://sprites/bad.png" id="5_8s1b0"]
-[ext_resource type="Script" path="res://scenes/IA.gd" id="7_mijfj"]
+[ext_resource type="Script" path="res://scripts/IA.gd" id="7_o46ob"]
 
 [sub_resource type="Animation" id="Animation_q73f2"]
 length = 0.001
@@ -307,7 +307,7 @@ libraries = {
 
 [node name="timerIA" type="Timer" parent="."]
 one_shot = true
-script = ExtResource("7_mijfj")
+script = ExtResource("7_o46ob")
 
 [connection signal="pressed" from="butJogador" to="." method="ativarDesativarIA"]
 [connection signal="timeout" from="timerIA" to="timerIA" method="_on_timeout"]
