@@ -70,7 +70,7 @@ func getBotao(lin: int, col: int) -> Botao:
 
 # Compara 3 botões e os marca, caso detecte vitória
 func compare(b1: Botao, b2: Botao, b3: Botao) -> bool:
-	if b1.peca == b2.peca && b2.peca == b3.peca && b3.peca != " ":
+	if b1.id == b2.id && b2.id == b3.id && b3.id != 0:
 		b1.marcar(.3)
 		b2.marcar(.2)
 		b3.marcar(.1)
@@ -99,10 +99,10 @@ func verificaVencedor() -> bool:
 
 	return false
 
-
+# Se não encontrar um botão com id 0, então não existem mais jogadas
 func verificarEmpate() -> bool:
 	for lin in botoes:
 		for bot in lin:
-			if (bot as Botao).peca == " ":
+			if (bot as Botao).id == 0:
 				return false
 	return true

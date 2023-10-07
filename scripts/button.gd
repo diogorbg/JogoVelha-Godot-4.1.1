@@ -5,11 +5,8 @@ class_name Botao
 @onready var anim2 = %anim2 as AnimationPlayer
 @onready var img = %img as TextureRect
 
-@export var cor1: Color
-@export var cor2: Color
-
-# guarda o valor x: jogador1, o: jogador2, " ": espaço vazio
-var peca: String = " "
+# guarda o id do jogador 1: jogador1, -1: jogador2, 0: espaço vazio
+var id: int = 0
 
 # Sinal do clique do botão
 func _on_pressed():
@@ -17,12 +14,12 @@ func _on_pressed():
 	anim.play("click")
 	self_modulate = Color(JogoVelha.jogador.corBg, 0.5)
 	img.texture = JogoVelha.jogador.getImg()
-	peca = "X" if JogoVelha.jogador.id == 1 else "O"
+	id = JogoVelha.jogador.id
 	JogoVelha.nextTurn()
 
 # Restaura valores iniciais para criar nova partida
 func reset():
-	peca = " "
+	id = 0
 	disabled = false
 	anim.play("start")
 	anim2.play("RESET")
@@ -30,7 +27,7 @@ func reset():
 
 # Botões que não foram utilizados são desativados
 func finalizar():
-	if peca == " ":
+	if id == 0:
 		disabled = true
 		self_modulate = Color(Color.WHITE, 0.1)
 
