@@ -63,8 +63,6 @@ static func nextTurn():
 			oponente = _singleton.panelPlayer2
 		jogador.setSel(true)
 		oponente.setSel(false)
-		if jogador.usarIA:
-			_singleton.jogarComIA(jogador)
 
 # Facilita retornar um botão localizado dentro de um Array[Array[Botao]]
 func getBotao(lin: int, col: int) -> Botao:
@@ -106,27 +104,24 @@ func verificarEmpate() -> bool:
 	return true
 
 # Uma IA simples que faz alguns movimentos de ataque e defesa, mas no geral é aleatória
-func jogarComIA(player: PanelPlayer):
-	# verifica se ainda é o turno da IA
-	if player != jogador: return
-	
+static func jogarComIA():
 	# 1. Verifica se existe uma jogada vitoriosa, onde se vence o jogo.
 	# Por exemplo: [1, 1, 0] soma 2... e se pode vencer nesta linha
 	# Mas no exemplo: [1, -1, 0] soma 0... e não se pode vencer
-	if _IAverificaSomas(player.id * 2):
+	if _singleton._IAverificaSomas(jogador.id * 2):
 		return
 		
 	# 2. Verifica se existe uma jogada de defesa, onde se impede o oponente.
 	# Por exemplo: [-1, -1, 0] soma -2... e se deve defender
 	# Mas no exemplo: [1, -1, 0] soma 0... e não faz diferença jogar aqui
-	if _IAverificaSomas(-player.id * 2):
+	if _singleton._IAverificaSomas(-jogador.id * 2):
 		return
 	
 	# 3. Não restando opção a IA é forçada a criar uma jogada, mas esta é uma IA
 	# simples e não é capaz disso. Nós vamos apenas fazer uma jogada aleatória.
 	# Então vamos gerar um vetor das posições vazias e escolher uma:
 	var vazios: Array = []
-	for lin in botoes:
+	for lin in _singleton.botoes:
 		for bot in lin:
 			if (bot as Botao).id == 0:
 				vazios.append(bot)

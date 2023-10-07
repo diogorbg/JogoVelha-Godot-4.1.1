@@ -9,6 +9,7 @@ var iconRobot = preload("res://sprites/robot.png")
 @onready var anim2 = %anim2 as AnimationPlayer
 @onready var but = $Button as Button
 @onready var butJogador = $butJogador as Button
+@onready var timerIA = $timerIA as Timer
 
 # Exibe uma enumeração na interface que permite escolher entre 'Jogador 1' e 'Jogador 2'
 # No final teremos a variável id que recebe o valor 1 ou -1 (-1 irá nos ajudar a verificar o tabeleiro)
@@ -38,6 +39,8 @@ func getNome() -> String:
 func setSel(sel: bool):
 	seta.visible = sel
 	anim2.get_parent().visible = false
+	# Se a IA estiver ela será executada após o timer
+	if sel && usarIA: timerIA.start()
 
 # Mostra o trofeu e soma uma vitória
 func showVitoria():
@@ -56,3 +59,8 @@ func ativarDesativarIA():
 	usarIA = !usarIA
 	butJogador.icon = iconRobot if usarIA else iconHuman
 	butJogador.text = getNome()
+
+func _on_timerIA_timeout():
+	# verifica se a IA ainda está ativa e se ainda é seu turno
+	if usarIA && JogoVelha.jogador == self:
+		JogoVelha.jogarComIA()

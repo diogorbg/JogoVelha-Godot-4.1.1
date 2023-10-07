@@ -37,7 +37,6 @@ func marcar(delta:float):
 	anim2.play("win")
 	anim2.advance(delta)
 
-
 # conectar este sinal caso o clique não esteja funcionando no mobile
 #func _on_gui_input(event: InputEvent) -> void:
 #	elif event is InputEventScreenTouch:
