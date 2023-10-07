@@ -1,20 +1,27 @@
 extends VBoxContainer
 class_name PanelPlayer
 
+var iconHuman = preload("res://sprites/human.png")
+var iconRobot = preload("res://sprites/robot.png")
+
 @onready var seta = %seta as Sprite2D
 @onready var txtVitorias = %txtVitorias as Label
 @onready var anim2 = %anim2 as AnimationPlayer
 @onready var but = $Button as Button
+@onready var butJogador = $butJogador as Button
 
 # Exibe uma enumeração na interface que permite escolher entre 'Jogador 1' e 'Jogador 2'
 # No final teremos a variável id que recebe o valor 1 ou -1 (-1 irá nos ajudar a verificar o tabeleiro)
 @export_enum("Jogador 1:1", "Jogador 2:-1") var id: int = 1
+@export var usarIA: bool = false
 @export_color_no_alpha var corBg: Color
 
 var vitorias: int  = 0
 
 func _ready():
 	anim2.get_parent().visible = false
+	butJogador.icon = iconRobot if usarIA else iconHuman
+	butJogador.text = getNome()
 
 # retorna a textura do jogador... a mesma que está no botão
 func getImg():
@@ -22,7 +29,10 @@ func getImg():
 
 # Retorna o nome do jogador
 func getNome() -> String:
-	return "Jogador 1" if id == 1 else "Jogador 2"
+	if usarIA:
+		return "IA 1" if id == 1 else "IA 2"
+	else:
+		return "Jogador 1" if id == 1 else "Jogador 2"
 
 # Mostra qual jogador está ativo
 func setSel(sel: bool):
@@ -40,3 +50,9 @@ func showVitoria():
 func showDerrota():
 	anim2.get_parent().visible = true
 	anim2.play("derrota")
+
+# Permite jogar com IA simples
+func ativarDesativarIA():
+	usarIA = !usarIA
+	butJogador.icon = iconRobot if usarIA else iconHuman
+	butJogador.text = getNome()
