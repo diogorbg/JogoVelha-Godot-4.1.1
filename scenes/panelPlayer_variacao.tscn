@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://ck3mg6efe640h" path="res://sprites/4.png" id="2_c0xkr"]
 
 [node name="panelPlayer" instance=ExtResource("1_setd0")]
+id = -1
+corBg = Color(0.8, 0.346667, 0, 1)
 
 [node name="butAvatar" parent="." index="0"]
 icon = ExtResource("2_c0xkr")
@@ -19,3 +21,6 @@ grow_horizontal = 1
 [node name="seta" parent="butAvatar/Control" index="0"]
 self_modulate = Color(0.75, 0.48225, 0.2775, 1)
 rotation = 1.5708
+
+[node name="imgBad" parent="final" index="1"]
+self_modulate = Color(0.746094, 0.480469, 0.277344, 1)
