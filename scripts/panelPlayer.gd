@@ -27,7 +27,7 @@ var tema = null
 var oponente: PanelPlayer = null
 
 func _ready():
-	setTema(false)
+	setTema()
 	anim2.get_parent().visible = false
 
 # Volta um tema, mas evita que seja igual ao oponente
@@ -43,13 +43,12 @@ func proxTema():
 	else: setTema()
 
 # Aplica as cores e texturas para todas as partes customizáveis
-# all define se deve trocar o tema de todos os botões
-func setTema(all: bool = true):
+func setTema():
 	tema = _temas[idTema]
 	seta.self_modulate = tema.cor
 	butAvatar.icon = tema.img
 	imgBad.self_modulate = tema.cor
-	if all: JogoVelha.setTema(self)
+	Botao.setTemaAll(get_tree(), self)
 
 # Retorna o nome do jogador
 func getNome() -> String:

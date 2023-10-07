@@ -36,12 +36,6 @@ func novoJogo():
 			(bot as Botao).reset()
 	JogoVelha.nextTurn()
 
-static func setTema(player: PanelPlayer):
-	for lin in _singleton.botoes:
-		for bot in lin:
-			if (bot as Botao).id == player.id:
-				(bot as Botao).setTema(player.tema)
-
 # Remove a seleção de jogador e desativa todos os botões não utilizados
 func finalizar():
 	panelPlayer1.setSel(false)
