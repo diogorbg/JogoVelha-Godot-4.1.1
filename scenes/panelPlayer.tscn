@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://g52trn0ghgl2"]
+[gd_scene load_steps=15 format=3 uid="uid://g52trn0ghgl2"]
 
 [ext_resource type="Texture2D" uid="uid://cg1sulkillphb" path="res://sprites/1.png" id="1_rf4j6"]
 [ext_resource type="Script" path="res://scripts/panelPlayer.gd" id="1_tr2u5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dqnm0ybk5vuka" path="res://sprites/trofeu.png" id="4_eyw0h"]
 [ext_resource type="Texture2D" uid="uid://bm06btkxr8mh2" path="res://sprites/human.png" id="4_lel52"]
 [ext_resource type="Texture2D" uid="uid://n0utwi14ke80" path="res://sprites/bad.png" id="5_8s1b0"]
+[ext_resource type="Script" path="res://scenes/IA.gd" id="7_mijfj"]
 
 [sub_resource type="Animation" id="Animation_q73f2"]
 length = 0.001
@@ -237,8 +238,6 @@ custom_minimum_size = Vector2(180, 0)
 offset_right = 180.0
 offset_bottom = 177.0
 script = ExtResource("1_tr2u5")
-id = null
-usarIA = null
 corBg = Color(0, 0.453333, 0.8, 1)
 
 [node name="Button" type="Button" parent="."]
@@ -275,6 +274,7 @@ libraries = {
 
 [node name="butJogador" type="Button" parent="."]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "Jogador 1"
 icon = ExtResource("4_lel52")
 clip_text = true
@@ -307,6 +307,7 @@ libraries = {
 
 [node name="timerIA" type="Timer" parent="."]
 one_shot = true
+script = ExtResource("7_mijfj")
 
 [connection signal="pressed" from="butJogador" to="." method="ativarDesativarIA"]
-[connection signal="timeout" from="timerIA" to="." method="_on_timerIA_timeout"]
+[connection signal="timeout" from="timerIA" to="timerIA" method="_on_timeout"]

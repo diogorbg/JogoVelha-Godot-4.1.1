@@ -39,7 +39,7 @@ func getNome() -> String:
 func setSel(sel: bool):
 	seta.visible = sel
 	anim2.get_parent().visible = false
-	# Se a IA estiver ela será executada após o timer
+	# Se a IA estiver ativa, será executada após o timer
 	if sel && usarIA: timerIA.start()
 
 # Mostra o trofeu e soma uma vitória
@@ -59,8 +59,3 @@ func ativarDesativarIA():
 	usarIA = !usarIA
 	butJogador.icon = iconRobot if usarIA else iconHuman
 	butJogador.text = getNome()
-
-func _on_timerIA_timeout():
-	# verifica se a IA ainda está ativa e se ainda é seu turno
-	if usarIA && JogoVelha.jogador == self:
-		JogoVelha.jogarComIA()
