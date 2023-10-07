@@ -21,3 +21,6 @@ grow_horizontal = 1
 [node name="seta" parent="Button/Control" index="0"]
 self_modulate = Color(0.75, 0.48225, 0.2775, 1)
 rotation = 1.5708
+
+[node name="imgBad" parent="final" index="1"]
+self_modulate = Color(0.746094, 0.480469, 0.277344, 1)

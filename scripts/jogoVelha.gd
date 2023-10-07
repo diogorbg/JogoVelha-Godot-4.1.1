@@ -15,9 +15,13 @@ class_name JogoVelha
 @onready var but9 = $tabuleiro/HBox3/but9 as Botao
 @onready var botoes = [[but1, but2, but3], [but4, but5, but6], [but7, but8, but9]]
 
-static var isPlayer1: bool = false
+# Este é o jogador atual: turno atual
+static var jogador: PanelPlayer = null
+# Este é o jogador oponente: próximo turno
+static var oponente: PanelPlayer = null
+
 # singleton é uma técnica muito útil para criar objetos gerenciadores
-static var _singleton: JogoVelha
+static var _singleton: JogoVelha = null
 
 func _ready():
 	_singleton = self
@@ -28,12 +32,7 @@ func novoJogo():
 	for lin in botoes:
 		for bot in lin:
 			(bot as Botao).reset()
-	isPlayer1 = false
 	JogoVelha.nextTurn()
-
-# Sempre retorna o PanelPlayer do jogador atual
-static func getPanelPlayer() -> PanelPlayer:
-	return _singleton.panelPlayer1 if isPlayer1 else _singleton.panelPlayer2
 
 # Remove a seleção de jogador e desativa todos os botões não utilizados
 func finalizar():
@@ -48,17 +47,22 @@ func finalizar():
 static func nextTurn():
 	if _singleton.verificaVencedor():
 		_singleton.finalizar()
-		getPanelPlayer().showVitoria()
-		print("jogador " + ("1" if  isPlayer1 else "2") + " venceu")
+		jogador.showVitoria()
+		print(jogador.getNome() + " venceu")
 	elif _singleton.verificarEmpate():
 		_singleton.finalizar()
 		_singleton.panelPlayer1.showDerrota()
 		_singleton.panelPlayer2.showDerrota()
 		print("Jogo empatado")
 	else:
-		isPlayer1 = !isPlayer1
-		_singleton.panelPlayer1.setSel(isPlayer1)
-		_singleton.panelPlayer2.setSel(!isPlayer1)
+		if jogador == _singleton.panelPlayer1:
+			jogador = _singleton.panelPlayer2
+			oponente = _singleton.panelPlayer1
+		else:
+			jogador = _singleton.panelPlayer1
+			oponente = _singleton.panelPlayer2
+		jogador.setSel(true)
+		oponente.setSel(false)
 
 # Facilita retornar um botão localizado dentro de um Array[Array[Botao]]
 func getBotao(lin: int, col: int) -> Botao:

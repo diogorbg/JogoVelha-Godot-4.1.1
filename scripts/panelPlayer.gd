@@ -4,6 +4,7 @@ class_name PanelPlayer
 @onready var seta = %seta as Sprite2D
 @onready var txtVitorias = %txtVitorias as Label
 @onready var anim2 = %anim2 as AnimationPlayer
+@onready var but = $Button as Button
 
 # Exibe uma enumeração na interface que permite escolher entre 'Jogador 1' e 'Jogador 2'
 # No final teremos a variável id que recebe o valor 1 ou -1 (-1 irá nos ajudar a verificar o tabeleiro)
@@ -14,6 +15,14 @@ var vitorias: int  = 0
 
 func _ready():
 	anim2.get_parent().visible = false
+
+# retorna a textura do jogador... a mesma que está no botão
+func getImg():
+	return but.icon
+
+# Retorna o nome do jogador
+func getNome() -> String:
+	return "Jogador 1" if id == 1 else "Jogador 2"
 
 # Mostra qual jogador está ativo
 func setSel(sel: bool):
