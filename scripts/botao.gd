@@ -25,11 +25,11 @@ func reset():
 	anim2.play("RESET")
 	self_modulate = Color.WHITE
 
-# Botões que não foram utilizados são desativados
-func finalizar():
+# Botões que não foram utilizados são ativados/desativados
+func setAtivo(ativo: bool):
 	if id == 0:
-		disabled = true
-		self_modulate = Color(Color.WHITE, 0.1)
+		disabled = !ativo
+		self_modulate = Color(Color.WHITE, 1.0 if ativo else 0.1)
 
 # Marca o botão como peças vencedoras
 func marcar(delta:float):

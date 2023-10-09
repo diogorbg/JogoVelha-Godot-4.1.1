@@ -46,8 +46,12 @@ func novoJogo():
 func finalizar():
 	panelPlayer1.setSel(false)
 	panelPlayer2.setSel(false)
-	for bot in lista:
-		bot.finalizar()
+	JogoVelha.setBotesAtivo(false)
+
+# Seta a ativação de todos os botões
+static func setBotesAtivo(ativo: bool):
+	for bot in _singleton.lista:
+		bot.setAtivo(ativo)
 
 # Uma função static permite ser chamada diretamente por outro script: JogoVelha.proximoTurno()
 static func proximoTurno(): _singleton._proximoTurno()
