@@ -15,7 +15,7 @@ func _on_pressed():
 	self_modulate = Color(JogoVelha.jogador.corBg, 0.5)
 	img.texture = JogoVelha.jogador.getImg()
 	id = JogoVelha.jogador.id
-	JogoVelha.nextTurn()
+	JogoVelha.proximoTurno()
 
 # Restaura valores iniciais para criar nova partida
 func reset():
