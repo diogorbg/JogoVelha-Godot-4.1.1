@@ -69,8 +69,12 @@ func getNome() -> String:
 func setSel(sel: bool):
 	seta.visible = sel
 	anim2.get_parent().visible = false
-	# Se a IA estiver ativa, será executada após o timer
-	if sel && usarIA: timerIA.start()
+	if sel && !usarIA:
+		JogoVelha.setBotesAtivo(true)
+	elif sel && usarIA:
+		JogoVelha.setBotesAtivo(false)
+		# Se a IA estiver ativa, será executada após o timer
+		timerIA.start()
 
 # Mostra o trofeu e soma uma vitória
 func showVitoria():
