@@ -7,10 +7,10 @@
 id = -1
 corBg = Color(0.8, 0.346667, 0, 1)
 
-[node name="Button" parent="." index="0"]
+[node name="butAvatar" parent="." index="0"]
 icon = ExtResource("2_c0xkr")
 
-[node name="Control" parent="Button" index="0"]
+[node name="Control" parent="butAvatar" index="0"]
 anchors_preset = 4
 anchor_left = 0.0
 anchor_right = 0.0
@@ -18,7 +18,7 @@ offset_left = 10.0
 offset_right = 10.0
 grow_horizontal = 1
 
-[node name="seta" parent="Button/Control" index="0"]
+[node name="seta" parent="butAvatar/Control" index="0"]
 self_modulate = Color(0.75, 0.48225, 0.2775, 1)
 rotation = 1.5708
 

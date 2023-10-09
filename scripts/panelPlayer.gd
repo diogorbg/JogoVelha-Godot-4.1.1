@@ -7,7 +7,7 @@ var iconRobot = preload("res://sprites/robot.png")
 @onready var seta = %seta as Sprite2D
 @onready var txtVitorias = %txtVitorias as Label
 @onready var anim2 = %anim2 as AnimationPlayer
-@onready var but = $Button as Button
+@onready var butAvatar = %butAvatar as Button
 @onready var butJogador = $butJogador as Button
 @onready var timerIA = $timerIA as Timer
 
@@ -25,8 +25,7 @@ func _ready():
 	butJogador.text = getNome()
 
 # retorna a textura do jogador... a mesma que está no botão
-func getImg():
-	return but.icon
+func getImg(): return butAvatar.icon
 
 # Retorna o nome do jogador
 func getNome() -> String:
