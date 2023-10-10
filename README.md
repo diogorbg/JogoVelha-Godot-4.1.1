@@ -9,6 +9,22 @@ Confira as versões compiladas em [Releases](https://github.com/diogorbg/JogoVel
 
 * [jogoVelha_win_v0.2.zip](https://github.com/diogorbg/JogoVelha-Godot-4.1.1/releases/download/v0.2/jogoVelha_win.zip)
 
+## Sobre as variações de projeto
+
+Neste repositório você pode encontrar 3 versões diferentes do projeto JogoVelha-Godot-4.1.1, são elas:
+
+### Branch main
+Uma versão mais direta do jogo da velha. Implementa a interface do jogo e a possibilidade de jogar contra a IA.
+* Projeto Godot: [jogoVelha_main.zip](https://github.com/diogorbg/JogoVelha-Godot-4.1.1/archive/refs/heads/main.zip)
+
+### Branch colorSelect
+Uma variação que permite a customização da cor do jogador. Implementa a utilização da classe Resource para a criação de 6 possibilidades de cores.
+* Projeto Godot: [jogoVelha_colorSelect.zip](https://github.com/diogorbg/JogoVelha-Godot-4.1.1/archive/refs/heads/colorSelect.zip)
+
+### Branch webSocket (em desenvolvimento...)
+Uma versão mais avançada que permite jogar em rede. Implementa um cliente WebSocket que se conecta com um servidor que gerencia usuários e estados do jogo.
+* Projeto Godot: [jogoVelha_webSocket.zip](https://github.com/diogorbg/JogoVelha-Godot-4.1.1/archive/refs/heads/webSocket.zip)
+
 ## Inteligência Artificial
 
 Agora você pode jogar contra uma IA. Ela é feita para ser balanceada. Ela não deixa de ganhar/defender se estiver por uma única jogada, mas ela também não é capaz de criar estratégias para vencer. Em vez disso a IA joga aleatoriamente. Ela segue as seguintes prioridades:
