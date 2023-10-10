@@ -26,7 +26,7 @@ A Gogot é uma engine com um potencial gigantesco para o desenvolvimento de jogo
 * [Eu estava errado sobre o GODOT... - Uniday Studio](https://www.youtube.com/watch?v=vNDUVor9RUw)
 * [Godot’s Node System, Part 3: Engine Comparisons](https://willnationsdev.wordpress.com/2018/04/07/godots-node-system-part-3-engine-comparisons)
 
-Acontecimentos recentes envolvendo a Unity e a cominidade indie colocaram a Gogot em evidência, pois os desenvolvedores indie buscavam por uma engine substituta. A dura realidade para os desenvolvedores é que essa substitura não existe, pois não há como migrar projetos entre engines, mas a dura realidade para a Unity é que os desenvolvedores passaram a considerar novas características desejáveis em uma engine.
+Acontecimentos recentes envolvendo a Unity e a comunidade indie colocaram a Gogot em evidência, pois os desenvolvedores indie buscavam por uma engine substituta. A dura realidade para os desenvolvedores é que essa substituta não existe, pois não há como migrar projetos entre engines, mas a dura realidade para a Unity é que os desenvolvedores passaram a considerar novas características desejáveis em uma engine.
 
 * [A Godot está FAZENDO NÚMEROS!](https://www.youtube.com/watch?v=XsWhF08_vnQ)
 
@@ -35,4 +35,5 @@ Acontecimentos recentes envolvendo a Unity e a cominidade indie colocaram a Gogo
 A Godot 4 trouxe um série de melhorias que mudam significativamente o fluxo de produção. Pelo menos na minha visão, a mais aguardada era a possibilidade de criar variáveis e funções estáticas. Isso é uma necessidade quando se trabalha com Unity, C# e demais linguagens de programação. A forma com que era feita na Godot 3 era confusa e agora foi resolvida.
 Logo, nem preciso dizer o quão importante é a busca por materiais sobre Godot 4. Vou listar alguns bons materiais que encontrei em minhas buscas recentes:
 
-* 
+* [Tutorial GODOT 4.0 - Plataforma 2D - Clécio Espindola GameDev](https://www.youtube.com/watch?v=egniMIdMoMU&list=PL-oJEh-N3A3SOPWuMuulbnJv0BFgvBnVG)
+* [RPG TopDown - (Godot 4.0) - DevBandeira](https://www.youtube.com/watch?v=BmJlBFUVBDo&list=PLFzAtSiFUbT-UZcEli_IlKFQdk3FEBMlq)
