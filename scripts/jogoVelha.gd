@@ -4,23 +4,32 @@ class_name JogoVelha
 @onready var panelPlayer1 = %panelPlayer1 as PanelPlayer
 @onready var panelPlayer2 = %panelPlayer2 as PanelPlayer
 
-@onready var but1 = $tabuleiro/HBox1/but1 as Botao
-@onready var but2 = $tabuleiro/HBox1/but2 as Botao
-@onready var but3 = $tabuleiro/HBox1/but3 as Botao
-@onready var but4 = $tabuleiro/HBox2/but4 as Botao
-@onready var but5 = $tabuleiro/HBox2/but5 as Botao
-@onready var but6 = $tabuleiro/HBox2/but6 as Botao
-@onready var but7 = $tabuleiro/HBox3/but7 as Botao
-@onready var but8 = $tabuleiro/HBox3/but8 as Botao
-@onready var but9 = $tabuleiro/HBox3/but9 as Botao
-@onready var botoes = [[but1, but2, but3], [but4, but5, but6], [but7, but8, but9]]
+# Todos os botões organizados em forma de lista
+@onready var lista: Array[Botao] = [
+	$tabuleiro/HBox1/but1,
+	$tabuleiro/HBox1/but2,
+	$tabuleiro/HBox1/but3,
+	$tabuleiro/HBox2/but4,
+	$tabuleiro/HBox2/but5,
+	$tabuleiro/HBox2/but6,
+	$tabuleiro/HBox3/but7,
+	$tabuleiro/HBox3/but8,
+	$tabuleiro/HBox3/but9,
+]
+# Todos os botões organizados em forma de tabela
+@onready var botoes = [
+	[lista[0], lista[1], lista[2]],
+	[lista[3], lista[4], lista[5]],
+	[lista[6], lista[7], lista[8]],
+]
 
 # Este é o jogador atual: turno atual
 static var jogador: PanelPlayer = null
 # Este é o jogador oponente: próximo turno
 static var oponente: PanelPlayer = null
 
-# singleton é uma técnica muito útil para criar objetos gerenciadores
+# Singleton é uma técnica muito útil para criar objetos gerenciadores
+# É uma forma de acessar a instancia do JogoVelha de uma função static
 static var _singleton: JogoVelha = null
 
 func _ready():
@@ -31,44 +40,48 @@ func _ready():
 
 # Restaura todos os valores para iniciar uma nova partida
 func novoJogo():
-	for lin in botoes:
-		for bot in lin:
-			(bot as Botao).reset()
-	JogoVelha.nextTurn()
+	for bot in lista:
+		bot.reset()
+	_proximoTurno()
 
 # Remove a seleção de jogador e desativa todos os botões não utilizados
 func finalizar():
 	panelPlayer1.setSel(false)
 	panelPlayer2.setSel(false)
-	for lin in botoes:
-		for bot in lin:
-			(bot as Botao).finalizar()
+	JogoVelha.setBotesAtivo(false)
+
+# Seta a ativação de todos os botões
+static func setBotesAtivo(ativo: bool):
+	for bot in _singleton.lista:
+		bot.setAtivo(ativo)
+
+# Uma função static permite ser chamada diretamente por outro script: JogoVelha.proximoTurno()
+static func proximoTurno(): _singleton._proximoTurno()
 
 # Chama o próximo turno
 # Verificações de vitória são feitas neste momento
-static func nextTurn():
-	if _singleton.verificaVencedor():
-		_singleton.finalizar()
+func _proximoTurno():
+	if verificaVencedor():
+		finalizar()
 		jogador.showVitoria()
 		print(jogador.getNome() + " venceu")
-	elif _singleton.verificarEmpate():
-		_singleton.finalizar()
-		_singleton.panelPlayer1.showDerrota()
-		_singleton.panelPlayer2.showDerrota()
+	elif verificarEmpate():
+		finalizar()
+		panelPlayer1.showDerrota()
+		panelPlayer2.showDerrota()
 		print("Jogo empatado")
 	else:
-		if jogador == _singleton.panelPlayer1:
-			jogador = _singleton.panelPlayer2
-			oponente = _singleton.panelPlayer1
+		if jogador == panelPlayer1:
+			jogador = panelPlayer2
+			oponente = panelPlayer1
 		else:
-			jogador = _singleton.panelPlayer1
-			oponente = _singleton.panelPlayer2
+			jogador = panelPlayer1
+			oponente = panelPlayer2
 		jogador.setSel(true)
 		oponente.setSel(false)
 
-#
-static  func getBotoes():
-	return _singleton.botoes;
+# Retorna a matriz de botões para outro script
+static  func getBotoes(): return _singleton.botoes;
 
 # Facilita retornar um botão localizado dentro de um Array[Array[Botao]]
 func getBotao(lin: int, col: int) -> Botao:
@@ -103,8 +116,7 @@ func verificaVencedor() -> bool:
 
 # Se não encontrar um botão com id 0, então não existem mais jogadas
 func verificarEmpate() -> bool:
-	for lin in botoes:
-		for bot in lin:
-			if (bot as Botao).id == 0:
-				return false
+	for bot in lista:
+		if bot.id == 0:
+			return false
 	return true

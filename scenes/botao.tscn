@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://570slmre70yr"]
 
-[ext_resource type="Script" path="res://scripts/button.gd" id="1_6e45q"]
+[ext_resource type="Script" path="res://scripts/botao.gd" id="1_6e45q"]
 [ext_resource type="Texture2D" uid="uid://cg1sulkillphb" path="res://sprites/1.png" id="2_qlemb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3b4o"]

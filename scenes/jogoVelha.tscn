@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bieaiytldqkb0"]
 
 [ext_resource type="Script" path="res://scripts/jogoVelha.gd" id="1_386pt"]
-[ext_resource type="PackedScene" uid="uid://570slmre70yr" path="res://scenes/button.tscn" id="1_n26q3"]
+[ext_resource type="PackedScene" uid="uid://570slmre70yr" path="res://scenes/botao.tscn" id="1_n26q3"]
 [ext_resource type="PackedScene" uid="uid://g52trn0ghgl2" path="res://scenes/panelPlayer.tscn" id="2_8fuv7"]
 [ext_resource type="PackedScene" uid="uid://do0ehyleohgv1" path="res://scenes/panelPlayer_variacao.tscn" id="4_y7hhk"]
 
