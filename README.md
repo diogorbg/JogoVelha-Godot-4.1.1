@@ -9,6 +9,8 @@ Confira as versões compiladas em [Releases](https://github.com/diogorbg/JogoVel
 
 * [jogoVelha_win_v0.2.zip](https://github.com/diogorbg/JogoVelha-Godot-4.1.1/releases/download/v0.2/jogoVelha_win.zip)
 
+![Code](.readme/code.png)
+
 ## Sobre as variações de projeto
 
 Neste repositório você pode encontrar 3 versões diferentes do projeto JogoVelha-Godot-4.1.1, são elas:
@@ -31,6 +33,8 @@ Agora você pode jogar contra uma IA. Ela é feita para ser balanceada. Ela não
 1. Verifica se existe uma jogada vitoriosa, onde se vence o jogo.
 2. Verifica se existe uma jogada de defesa, onde se impede o oponente.
 3. Não restando opção a IA é forçada jogar aleatoriamente.
+
+![Godot 4](.readme/godot4.jpg)
 
 ## Sobre a Godot
 
